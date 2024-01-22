@@ -71,6 +71,12 @@ askAddManager()
         // build html
         const html = render(members);
 
+        // Check if the 'output' directory exists, create it if not
+        // https://www.basedash.com/blog/javascript-check-if-file-exists
+        if (!fs.existsSync(OUTPUT_DIR)) {
+            fs.mkdirSync(OUTPUT_DIR);
+        }
+
         //write to file html with file name from variables
         writeToFile(html, outputPath);
     });
