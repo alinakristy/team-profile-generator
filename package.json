@@ -12,7 +12,7 @@
   "author": "alinakristy",
   "license": "MIT",
   "dependencies": {
-    "inquirer": "^9.2.12"
+    "inquirer": "^6.3.1"
   },
   "devDependencies": {
     "jest": "^29.7.0"
