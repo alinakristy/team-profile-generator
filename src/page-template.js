@@ -112,6 +112,5 @@ module.exports = team => {
         </div>
     </div>
 </body>
-</html>
-    `;
+</html>`;
 };
