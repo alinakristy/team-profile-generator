@@ -20,27 +20,27 @@ var employees = [];
 
 //method to ask Main Meny questions
 async function askMainMenuQuestions() {
-    const answers = await inquirer.prompt(questions.mainMenuQuestions)
+    const answers = await inquirer.prompt(questions.mainMenuQuestions);
     return answers.option;
 }
 
 // method to ask Engineer questions and add it to array
 async function askAddEngineer() {
-    const answers = await inquirer.prompt(questions.engineerQuestions)
+    const answers = await inquirer.prompt(questions.engineerQuestions);
     const engineer = new Engineer(answers.name, answers.id, answers.email, answers.github);
     employees.push(engineer);
 }
 
 // method to ask Intern questions and add it to array
 async function askAddIntern() {
-    const answers = await inquirer.prompt(questions.internQuestions)
+    const answers = await inquirer.prompt(questions.internQuestions);
     const intern = new Intern(answers.name, answers.id, answers.email, answers.school);
     employees.push(intern);
 }
 
 // method to ask manager questions and add it to array and then while to add rest team employees
 async function askAddManager() {
-    const answers = await inquirer.prompt(questions.managerQuestions)
+    const answers = await inquirer.prompt(questions.managerQuestions);
     const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
     employees.push(manager);
 
