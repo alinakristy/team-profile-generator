@@ -1,4 +1,4 @@
-const managerQuestions = [
+const managerQuestions = (currentEmployeeId) => [
     {
         type: 'input',
         name: 'name',
@@ -8,6 +8,7 @@ const managerQuestions = [
         type: 'input',
         name: 'id',
         message: "Enter the team manager's employee ID:",
+        default: currentEmployeeId.toString(),
     },
     {
         type: 'input',
@@ -21,7 +22,7 @@ const managerQuestions = [
     },
 ];
 
-const engineerQuestions = [
+const engineerQuestions = (currentEmployeeId) => [
     {
         type: 'input',
         name: 'name',
@@ -31,7 +32,7 @@ const engineerQuestions = [
         type: 'input',
         name: 'id',
         message: "Enter the engineer's employee ID:",
-
+        default: currentEmployeeId.toString(),
     },
     {
         type: 'input',
@@ -45,7 +46,7 @@ const engineerQuestions = [
     },
 ];
 
-const internQuestions = [
+const internQuestions = (currentEmployeeId) => [
     {
         type: 'input',
         name: 'name',
@@ -55,6 +56,7 @@ const internQuestions = [
         type: 'input',
         name: 'id',
         message: "Enter the intern's employee ID:",
+        default: currentEmployeeId.toString()
     },
     {
         type: 'input',

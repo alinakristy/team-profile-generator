@@ -18,6 +18,11 @@ var employees = [];
 // use async/await as per https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Promises#async_and_await
 // to work easier with nested promises
 
+// to get quickly current employee id to be used for default value
+function getEmployeeId() {
+    return employees.length + 1;
+}
+
 //method to ask Main Meny questions
 async function askMainMenuQuestions() {
     const answers = await inquirer.prompt(questions.mainMenuQuestions);
@@ -26,21 +31,21 @@ async function askMainMenuQuestions() {
 
 // method to ask Engineer questions and add it to array
 async function askAddEngineer() {
-    const answers = await inquirer.prompt(questions.engineerQuestions);
+    const answers = await inquirer.prompt(questions.engineerQuestions(getEmployeeId()));
     const engineer = new Engineer(answers.name, answers.id, answers.email, answers.github);
     employees.push(engineer);
 }
 
 // method to ask Intern questions and add it to array
 async function askAddIntern() {
-    const answers = await inquirer.prompt(questions.internQuestions);
+    const answers = await inquirer.prompt(questions.internQuestions(getEmployeeId()));
     const intern = new Intern(answers.name, answers.id, answers.email, answers.school);
     employees.push(intern);
 }
 
 // method to ask manager questions and add it to array and then while to add rest team employees
 async function askAddManager() {
-    const answers = await inquirer.prompt(questions.managerQuestions);
+    const answers = await inquirer.prompt(questions.managerQuestions(getEmployeeId()));
     const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
     employees.push(manager);
 

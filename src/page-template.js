@@ -97,10 +97,7 @@ module.exports = team => {
         .employee-card {
             min-width: 250px;
             max-width: 250px;
-            min-height: 315px;
-            max-height: 315px;
             width: 250px;
-            height: 315px;
             overflow: hidden;
         }
     </style>
