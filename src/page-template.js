@@ -82,8 +82,7 @@ const generateTeam = team => {
 // exports function to generate entire page
 module.exports = team => {
 
-    return `
-    <!DOCTYPE html>
+    return `<!DOCTYPE html>
 <html lang="en">
 
 <head>
