@@ -68,24 +68,16 @@ const internQuestions = [
     },
 ];
 
-const chooseTeamRole = {
+const mainMenuQuestions = {
     type: 'list',
-    name: 'role',
-    message: 'Choose the role for the team member:',
-    choices: ['Engineer', 'Intern'],
-};
-
-const addNewTeamMember = {
-    type: 'list',
-    name: 'needToAddNewTeamMember',
-    message: 'Do you want to add another team member?',
-    choices: ['yes', 'no'],
+    name: 'option',
+    message: 'Choose an option?',
+    choices: ['Add an engineer', 'Add an intern', 'Finish building the team'],
 };
 
 module.exports = {
     managerQuestions,
     engineerQuestions,
     internQuestions,
-    chooseTeamRole,
-    addNewTeamMember,
+    mainMenuQuestions
 };

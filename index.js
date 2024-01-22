@@ -9,7 +9,68 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./src/page-template.js");
+// import questions to use here
+const questions = require("./src/user-questions.js");
 
+//store all team members here
+var members = [];
 
-// TODO: Write Code to gather information about the development team members, and render the HTML file.
+// use async/await as per https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Promises#async_and_await
+// to work easier with nested promises
 
+//method to ask Main Meny questions
+async function askMainMenuQuestions() {
+    const answers = await inquirer.prompt(questions.mainMenuQuestions)
+    return answers.option;
+}
+
+// method to ask Engineer questions and add it to array
+async function askAddEngineer() {
+    const answers = await inquirer.prompt(questions.engineerQuestions)
+    const engineer = new Engineer(answers.name, answers.id, answers.email, answers.github);
+    members.push(engineer);
+}
+
+// method to ask Intern questions and add it to array
+async function askAddIntern() {
+    const answers = await inquirer.prompt(questions.internQuestions)
+    const intern = new Intern(answers.name, answers.id, answers.email, answers.school);
+    members.push(intern);
+}
+
+// method to ask manager questions and add it to array and then while to add rest team members
+async function askAddManager() {
+    const answers = await inquirer.prompt(questions.managerQuestions)
+    const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
+    members.push(manager);
+
+    var mainMenu = await askMainMenuQuestions();
+
+    // if user asks to add engineer show engineer questions
+    // if user asks to add intern show intern questions
+    // otherwise for 'Finish building the team' just move on and finish executing the js
+    while (mainMenu == "Add an engineer" || mainMenu == "Add an intern") {
+        if (mainMenu == "Add an engineer") {
+            await askAddEngineer();
+        } else if (mainMenu == "Add an intern") {
+            await askAddIntern();
+        }
+
+        mainMenu = await askMainMenuQuestions();
+    }
+}
+
+function writeToFile(content, pathToFile) {
+    fs.writeFile(pathToFile, content, (err) =>
+        err ? console.error(err) : console.log(`HTML file (${pathToFile}) generated successfully!`)
+    );
+}
+
+askAddManager()
+    .then(() => {
+        // build html
+        const html = render(members);
+
+        //write to file html with file name from variables
+        writeToFile(html, outputPath);
+    });
