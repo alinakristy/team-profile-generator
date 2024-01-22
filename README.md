@@ -26,6 +26,14 @@ No contribution guideline provided
 ## Tests
 ```npm test```
 
+## Result
+
+Image 1:
+![demo html file team1](./img/team1.png)
+
+Image 2:
+![demo html file team2](./img/team2.png)
+
 ## Questions 
 For mre information contact me via [GitHub profile](https://github.com/alinakristy) or email address <alinakristy@gmail.com>
   
