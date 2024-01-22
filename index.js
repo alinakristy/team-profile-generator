@@ -12,8 +12,8 @@ const render = require("./src/page-template.js");
 // import questions to use here
 const questions = require("./src/user-questions.js");
 
-//store all team members here
-var members = [];
+//store all team employees here
+var employees = [];
 
 // use async/await as per https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Promises#async_and_await
 // to work easier with nested promises
@@ -28,21 +28,21 @@ async function askMainMenuQuestions() {
 async function askAddEngineer() {
     const answers = await inquirer.prompt(questions.engineerQuestions)
     const engineer = new Engineer(answers.name, answers.id, answers.email, answers.github);
-    members.push(engineer);
+    employees.push(engineer);
 }
 
 // method to ask Intern questions and add it to array
 async function askAddIntern() {
     const answers = await inquirer.prompt(questions.internQuestions)
     const intern = new Intern(answers.name, answers.id, answers.email, answers.school);
-    members.push(intern);
+    employees.push(intern);
 }
 
-// method to ask manager questions and add it to array and then while to add rest team members
+// method to ask manager questions and add it to array and then while to add rest team employees
 async function askAddManager() {
     const answers = await inquirer.prompt(questions.managerQuestions)
     const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
-    members.push(manager);
+    employees.push(manager);
 
     var mainMenu = await askMainMenuQuestions();
 
@@ -69,7 +69,7 @@ function writeToFile(content, pathToFile) {
 askAddManager()
     .then(() => {
         // build html
-        const html = render(members);
+        const html = render(employees);
 
         // Check if the 'output' directory exists, create it if not
         // https://www.basedash.com/blog/javascript-check-if-file-exists
